@@ -2,7 +2,7 @@ import { SelectComponentInterface } from '../interfaces/select-component.interfa
 import { Input } from '@angular/core';
 import { Ordering } from '../';
 
-export abstract class SelectComponent implements SelectComponentInterface {
+export class SelectComponent implements SelectComponentInterface {
 
     @Input('filterWithScope') filterWithScope = true;
     @Input('filterUrl') filterUrl: string;

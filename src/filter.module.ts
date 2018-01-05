@@ -8,39 +8,38 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { PaginationModule } from 'ngx-bootstrap';
-import { ApiRequestServiceInterface } from './helper/interfaces/api-request-service.interface';
 import { ApiRequestService } from './helper/abstracts/abstract-api-request.service';
-import { FactoryProvider } from '@angular/core/src/di/provider';
+import { ApiRequestServiceFaker } from './services/api-request-faker.service';
 
 @NgModule({
-  imports: [
-      CommonModule,
-      FormsModule,
-      ReactiveFormsModule,
-      TranslateModule,
-      PaginationModule
-  ],
-  declarations: [
-    FilterComponent,
-    ResultsPerPageComponent,
-    PaginationFilterComponent,
-    OrderingComponent
-  ],
-  exports: [
-    FilterComponent,
-    ResultsPerPageComponent,
-    PaginationFilterComponent,
-    OrderingComponent
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        PaginationModule
+    ],
+    declarations: [
+        FilterComponent,
+        ResultsPerPageComponent,
+        PaginationFilterComponent,
+        OrderingComponent
+    ],
+    exports: [
+        FilterComponent,
+        ResultsPerPageComponent,
+        PaginationFilterComponent,
+        OrderingComponent
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class FilterModule {
 
-    static forRoot(api: Provider): ModuleWithProviders {
+    static forRoot(config: { api?: Provider } = {}): ModuleWithProviders {
         return {
             ngModule: FilterModule,
             providers: [
-                api
+                config.api || { provide: ApiRequestService, useClass: ApiRequestServiceFaker }
             ]
         };
     }
