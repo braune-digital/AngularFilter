@@ -4,7 +4,19 @@ import { ParamFilter } from '../../helper/paramfilter.class';
 
 @Component({
     selector: 'filter-results-per-page',
-    templateUrl: 'results-per-page.component.html',
+    template: `
+        <span class="title">{{ 'forms.fields.results_per_page' | translate }}</span>
+
+        <select-component
+                [noSearchBox]="true"
+                [selectFormGroup]="form"
+                selectClass="form-group--small form-group--inline"
+                controlClass="form-control--small"
+                selectFormControlName="pagination"
+                [options]="resultKeys"
+                (onSelect)="refreshResultsPerPage()">
+        </select-component>
+    `,
 })
 export class ResultsPerPageComponent implements OnInit {
 

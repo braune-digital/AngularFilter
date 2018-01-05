@@ -4,7 +4,21 @@ import { ParamFilter } from '../../helper/paramfilter.class';
 
 @Component({
     selector: 'filter-pagination',
-    templateUrl: 'pagination.component.html',
+    template: `
+        <pagination [totalItems]="filterService.range.total"
+                           [itemsPerPage]="filterService.resultsPerPage"
+                           [ngModel]="filterService.page"
+                           (ngModelChange)="pageChanged($event)"
+                           [maxSize]="filterService.limitDisplayPages"
+                           [boundaryLinks]="true"
+                           [rotate]="false"
+                           [previousText]="previousText"
+                           [nextText]="nextText"
+                           [firstText]="firstText"
+                           [lastText]="lastText"
+                           *ngIf="!isLoading && filterService.range.pages > 1"
+        ></pagination>
+    `,
 })
 export class PaginationFilterComponent implements OnInit {
 

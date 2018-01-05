@@ -18,11 +18,11 @@ import { FilterModule } from '@braune-digital/filter';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FilterModule
+    AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FilterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -31,3 +31,7 @@ import { FilterModule } from '@braune-digital/filter';
 export class AppModule {}
 
 ```
+
+## Dependencies
+- https://www.npmjs.com/package/@ngx-translate/core
+- https://github.com/valor-software/ngx-bootstrap

@@ -5,7 +5,22 @@ import { Ordering } from '../../helper/filter/order';
 
 @Component({
     selector: 'filter-ordering',
-    templateUrl: 'ordering.component.html',
+    template: `
+        <span class="title">{{ 'forms.fields.order' | translate }}</span>
+        <select-component
+            [noSearchBox]="true"
+            [selectFormGroup]="form"
+            selectClass="form-group--small form-group--inline"
+            controlClass="form-control--small"
+            selectFormControlName="ordering"
+            [options]="[{key:'',label:'pages.portfolios.sort.none'}].concat(orderKeys)"
+            optionValue="key"
+            optionLabel="label"
+            (onSelect)="refreshOrdering()"></select-component>
+        
+        <i class="bd-icon bd-icon--big icon-arrow-down" *ngIf="getActiveSort() === 'desc'" (click)="refreshOrdering(true)"></i>
+        <i class="bd-icon bd-icon--big icon-arrow-up" *ngIf="getActiveSort() !== 'desc'" (click)="refreshOrdering(true)"></i>
+    `,
 })
 export class OrderingComponent implements OnInit, AfterViewInit {
 
@@ -18,7 +33,8 @@ export class OrderingComponent implements OnInit, AfterViewInit {
 
     private orderings: Array<Ordering> = [];
 
-    constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder) {
+    }
 
     ngOnInit(): void {
         this.form = this.fb.group({ ordering: '' });

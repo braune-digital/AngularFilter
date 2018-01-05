@@ -17,7 +17,7 @@ module.exports = {
     devtool: 'inline-source-map',
 
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js', '.html']
     },
 
     entry: helpers.root('index.ts'),
@@ -31,18 +31,29 @@ module.exports = {
     },
 
     // require those dependencies but don't bundle them
-    //externals: [/^\@angular\//, /^rxjs\//],
+    externals: [/^\@angular\//, /^rxjs\//, /^moment\//],
 
     module: {
         rules: [{
-            enforce: 'pre',
             test: /\.ts$/,
-            loader: 'tslint-loader',
-            exclude: [helpers.root('node_modules')]
-        }, {
-            test: /\.ts$/,
-            loader: 'awesome-typescript-loader?declaration=false',
+            loaders: ['awesome-typescript-loader', 'angular2-template-loader?keepUrl=true'],
             exclude: [/\.spec\.ts$/]
+        },
+        {
+            test: /\.js/,
+            loaders: ['angular2-template-loader'],
+            exclude: []
+        },
+        /* Embed files. */
+        {
+            test: /\.(html|css)$/,
+            loader: 'raw-loader',
+            exclude: /\.async\.(html|css)$/
+        },
+        /* Async loading. */
+        {
+            test: /\.async\.(html|css)$/,
+            loaders: ['file?name=[name].[hash].[ext]', 'extract']
         }]
     },
 

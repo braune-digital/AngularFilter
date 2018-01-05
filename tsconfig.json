@@ -23,7 +23,6 @@
     "compiled"
   ],
   "angularCompilerOptions": {
-    "genDir": "compiled",
     "strictMetadataEmit": true
   }
 }

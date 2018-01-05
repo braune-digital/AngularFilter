@@ -18,9 +18,8 @@ npm-debug.log
 coverage
 *.metadata.json
 *.ngsummary.json
-*.ngfactory.json
+*.ngfactory.ts
 bundles
-
 #################
 ## JetBrains
 #################
