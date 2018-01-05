@@ -1,0 +1,57 @@
+<input name="search"
+       *ngIf="type === 'text'"
+       [(ngModel)]="model"
+       (keyup)="onKeyPress()"
+       [placeholder]="filterPlaceholder"
+       class="form-control form-control--small form-control--transparent" />
+
+<div *ngIf="type === 'date_time_range'">
+  <input name="min"
+         [(ngModel)]="model"
+         (keyup)="onKeyPress()"
+         [placeholder]=""
+         class="form-control form-control--small form-control--transparent" />
+  <input name="max"
+         [(ngModel)]="model2"
+         (keyup)="onKeyPress()"
+         [placeholder]=""
+         class="form-control form-control--small form-control--transparent" />
+</div>
+
+<div *ngIf="type === 'date_time_range_fixed_interval'">
+  <input name="min" type="hidden"
+         [(ngModel)]="model"
+         (keyup)="onKeyPress()"
+         [placeholder]=""
+         class="form-control form-control--small form-control--transparent" />
+  <input name="max" type="hidden"
+         [(ngModel)]="model2"
+         (keyup)="onKeyPress()"
+         [placeholder]=""
+         class="form-control form-control--small form-control--transparent" />
+</div>
+
+<select-component *ngIf="type === 'select'"
+                  [selectPlaceholder]="filterPlaceholder"
+                  (onSelect)="onChange($event)"
+                  (onRemove)="onRemove($event)"
+                  [selectClass]="selectClass"
+                  [resetable]="true"
+                  [options]="options"
+                  optionValue="value"
+                  optionLabel="label">
+    <!--<option *ngIf="resetable"></option>-->
+    <!--<option *ngIf="resetable" value="">-</option>-->
+    <!--<option *ngFor="let option of options" [value]="option.value">{{ option.label | translate }}</option>-->
+</select-component>
+
+<select-component *ngIf="type === 'select-remote'"
+                  [selectPlaceholder]="filterPlaceholder"
+                  (onSelect)="onChange($event)"
+                  (onRemove)="onRemove($event)"
+                  [selectClass]="selectClass"
+                  [resetable]="true"
+                  [filterUrl]="remoteUrl"
+                  [filterProperties]="remoteProperty"
+>
+</select-component>

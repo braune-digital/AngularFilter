@@ -1,0 +1,57 @@
+{
+  "name": "@braune-digital/filter",
+  "version": "1.0.0",
+  "main": "bundles/bd-filter.umd.js",
+  "description": "",
+  "scripts": {
+    "build": "webpack",
+    "prepublish": "ngc && npm run build",
+    "clean": "rimraf bundles coverage src/**/*.d.ts src/**/*.map src/**/*.json src/**/*.js index.d.ts index.metadata.json index.ngsummary.json index.js"
+  },
+  "typings": "index.d.ts",
+  "module": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/braune-digital/BrauneDigitalAngularFilter.git"
+  },
+  "author": "Felix Baltruschat",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/braune-digital/BrauneDigitalAngularFilter/issues"
+  },
+  "homepage": "https://github.com/braune-digital/BrauneDigitalAngularFilter#readme",
+  "dependencies": {
+    "@angular/animations": "~5.0.0",
+    "@angular/common": "~5.0.0",
+    "@angular/compiler": "~5.0.0",
+    "@angular/core": "~5.0.0",
+    "@angular/forms": "~5.0.0",
+    "@angular/http": "~5.0.0",
+    "@angular/platform-browser": "~5.0.0",
+    "@angular/platform-browser-dynamic": "~5.0.0",
+    "@angular/platform-server": "~5.0.0",
+    "@angular/router": "~5.0.0",
+    "@angular/upgrade": "~5.0.0",
+    "@ngx-translate/core": "^9.0.2",
+    "moment": "^2.20.1",
+    "ngx-bootstrap": "^2.0.0-rc.0",
+    "rxjs": "^5.5.0",
+    "web-animations-js": "^2.3.1",
+
+    "zone.js": "^0.8.4"
+  },
+  "devDependencies": {
+    "@angular/cli": "1.5.0",
+    "@angular/compiler-cli": "^5.0.5",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.8.0",
+    "tslint-consistent-codestyle": "^1.11.0",
+    "tslint-loader": "^3.5.3",
+    "typescript": "2.4.2",
+    "webpack-dev-server": "^2.9.7",
+    "awesome-typescript-loader": "^3.4.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "core-js": "^2.4.1",
+    "webpack": "^3.10.0"
+  }
+}
