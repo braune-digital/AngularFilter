@@ -1,12 +1,14 @@
 {
   "name": "@braune-digital/filter",
-  "version": "1.0.0",
+  "version": "4.2.0",
   "main": "bundles/bd-filter.umd.js",
   "description": "",
   "scripts": {
     "build": "webpack",
     "prepublish": "ngc -p tsconfig.json && npm run build",
-    "clean": "rimraf bundles coverage src/**/*.d.ts src/**/*.map src/**/*.json src/**/*.js index.d.ts index.metadata.json index.ngsummary.json index.js"
+    "clean": "rimraf bundles coverage src/**/*.d.ts src/**/*.map src/**/*.json src/**/*.js index.d.ts index.metadata.json index.ngsummary.json index.js",
+    "pack": "npm run clean && npm run prepublish && npm pack",
+    "publish": "npm run clean && npm run prepublish && npm publish"
   },
   "typings": "index.d.ts",
   "module": "index.js",

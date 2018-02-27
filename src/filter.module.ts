@@ -33,11 +33,11 @@ import { ApiRequestServiceFaker } from './services/api-request-faker.service';
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class FilterModule {
+export class BrauneDigitalFilterModule {
 
     static forRoot(config: { api?: Provider } = {}): ModuleWithProviders {
         return {
-            ngModule: FilterModule,
+            ngModule: BrauneDigitalFilterModule,
             providers: [
                 config.api || { provide: ApiRequestService, useClass: ApiRequestServiceFaker }
             ]
