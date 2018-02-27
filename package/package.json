@@ -1,0 +1,55 @@
+{
+  "name": "@braune-digital/filter",
+  "version": "1.0.0",
+  "main": "bundles/bd-filter.umd.js",
+  "description": "",
+  "scripts": {
+    "build": "webpack",
+    "prepublish": "ngc -p tsconfig.json && npm run build",
+    "clean": "rimraf bundles coverage src/**/*.d.ts src/**/*.map src/**/*.json src/**/*.js index.d.ts index.metadata.json index.ngsummary.json index.js"
+  },
+  "typings": "index.d.ts",
+  "module": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/braune-digital/BrauneDigitalAngularFilter.git"
+  },
+  "author": "Felix Baltruschat",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/braune-digital/BrauneDigitalAngularFilter/issues"
+  },
+  "homepage": "https://github.com/braune-digital/BrauneDigitalAngularFilter#readme",
+  "dependencies": {
+    "@angular/common": "^4.2.4",
+    "@angular/compiler": "^4.2.4",
+    "@angular/core": "^4.2.4",
+    "@angular/forms": "^4.2.4",
+    "@angular/http": "^4.2.4",
+    "@angular/platform-browser": "^4.2.4",
+    "@angular/platform-browser-dynamic": "^4.2.4",
+    "@angular/router": "^4.2.4",
+    "@ngx-translate/core": "^8.0.0",
+    "@types/node": "^4.0.35",
+    "core-js": "^2.4.1",
+    "moment": "^2.20.1",
+    "ngx-bootstrap": "^2.0.0-rc.0",
+    "rxjs": "^5.4.2",
+    "zone.js": "^0.8.14"
+  },
+  "devDependencies": {
+    "@angular/cli": "1.4.4",
+    "@angular/compiler-cli": "^4.2.4",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^3.4.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "html-loader": "^0.5.4",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.8.0",
+    "tslint-consistent-codestyle": "^1.11.0",
+    "tslint-loader": "^3.5.3",
+    "typescript": "2.4.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  }
+}
