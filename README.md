@@ -12,9 +12,9 @@ npm install @braune-digital/filter --save
 1. Import `FilterModule`:
 ```javascript
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule} fro m '@angular/core';
+import { NgModule} from '@angular/core';
 import { AppComponent } from './app.component';
-import { FilterModule } from '@braune-digital/filter';
+import { BrauneDigitalFilterModule } from '@braune-digital/filter';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { FilterModule } from '@braune-digital/filter';
   ],
   imports: [
     BrowserModule,
-    FilterModule
+    BrauneDigitalFilterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
