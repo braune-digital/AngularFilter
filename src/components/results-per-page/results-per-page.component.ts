@@ -1,21 +1,21 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ParamFilter } from '../../helper/paramfilter.class';
+import { ParamFilter } from '../../paramfilter.class';
 
 @Component({
     selector: 'filter-results-per-page',
     template: `
-        <span class="title">{{ 'forms.fields.results_per_page' | translate }}</span>
+        <!--<span class="title">{{ 'forms.fields.results_per_page' | translate }}</span>-->
 
-        <select-component
-                [noSearchBox]="true"
-                [selectFormGroup]="form"
-                selectClass="form-group--small form-group--inline"
-                controlClass="form-control--small"
-                selectFormControlName="pagination"
-                [options]="resultKeys"
-                (onSelect)="refreshResultsPerPage()">
-        </select-component>
+        <!--<select-component-->
+                <!--[noSearchBox]="true"-->
+                <!--[selectFormGroup]="form"-->
+                <!--selectClass="form-group&#45;&#45;small form-group&#45;&#45;inline"-->
+                <!--controlClass="form-control&#45;&#45;small"-->
+                <!--selectFormControlName="pagination"-->
+                <!--[options]="resultKeys"-->
+                <!--(onSelect)="refreshResultsPerPage()">-->
+        <!--</select-component>-->
     `,
 })
 export class ResultsPerPageComponent implements OnInit {

@@ -1,22 +1,22 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ParamFilter } from '../../helper/paramfilter.class';
-import { Ordering } from '../../helper/filter/order';
+import { ParamFilter } from '../../paramfilter.class';
+import { Ordering } from '../../filter/order';
 
-@Component({
+@Component({ // todo - make directive without markup
     selector: 'filter-ordering',
     template: `
         <span class="title">{{ 'forms.fields.order' | translate }}</span>
-        <select-component
-            [noSearchBox]="true"
-            [selectFormGroup]="form"
-            selectClass="form-group--small form-group--inline"
-            controlClass="form-control--small"
-            selectFormControlName="ordering"
-            [options]="[{key:'',label:'pages.portfolios.sort.none'}].concat(orderKeys)"
-            optionValue="key"
-            optionLabel="label"
-            (onSelect)="refreshOrdering()"></select-component>
+        <!--<select-component-->
+            <!--[noSearchBox]="true"-->
+            <!--[selectFormGroup]="form"-->
+            <!--selectClass="form-group&#45;&#45;small form-group&#45;&#45;inline"-->
+            <!--controlClass="form-control&#45;&#45;small"-->
+            <!--selectFormControlName="ordering"-->
+            <!--[options]="[{key:'',label:'pages.portfolios.sort.none'}].concat(orderKeys)"-->
+            <!--optionValue="key"-->
+            <!--optionLabel="label"-->
+            <!--(onSelect)="refreshOrdering()"></select-component>-->
         
         <i class="bd-icon bd-icon--big icon-arrow-down" *ngIf="getActiveSort() === 'desc'" (click)="refreshOrdering(true)"></i>
         <i class="bd-icon bd-icon--big icon-arrow-up" *ngIf="getActiveSort() !== 'desc'" (click)="refreshOrdering(true)"></i>
@@ -29,7 +29,7 @@ export class OrderingComponent implements OnInit, AfterViewInit {
 
     @Output('reorder') reorder: EventEmitter<boolean> = new EventEmitter();
 
-    form: FormGroup;
+    form: FormGroup; // todo - use trigger as input fir directive or implement control value accessor interface
 
     private orderings: Array<Ordering> = [];
 

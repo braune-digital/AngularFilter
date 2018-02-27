@@ -1,11 +1,9 @@
-import { Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Filter } from './filter/filter';
 import { Ordering } from './filter/order';
 import { AndFilter } from './filter/types/and.filter';
-import { FilterComponent } from '../components/filter/filter.component';
-import { ApiRequestService } from './abstracts/abstract-api-request.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 export class ParamFilter {
 
@@ -24,14 +22,9 @@ export class ParamFilter {
 
     filtersFromLastRequest: string;
 
-    withScope = true;
-
     resultsPerPage = 10;
 
-    constructor(protected requestUrl: string, protected api: ApiRequestService, withScope?: boolean) {
-        if (withScope !== undefined) {
-            this.withScope = withScope;
-        }
+    constructor(protected requestUrl: string, protected http: HttpClient) {
     }
 
     public refresh(): void {
@@ -44,21 +37,11 @@ export class ParamFilter {
     }
 
     public refreshPromise(): Observable<any> {
-        this.api.buildHeaders(this.withScope);
-        return this.api.http.get(
-            this.api.baseUrl() + this.requestUrl,
-            {
-                headers: this.api.headers,
-                search: this.build()
-            }
-        ).map((response: Response) => {
-            this.preparePagination(response);
-            return response.json();
-        })
-            .catch((err: Response) => this.api.handleError(err));
+        return this.http.get(this.requestUrl, {params: this.build()})
+            // .catch((err: Response) => this.api.handleError(err));
     }
 
-    preparePagination(response: Response): void {
+    preparePagination(response: any): void {
         if (response.headers.has('Content-Range')) {
             const hdr = response.headers.get('Content-Range');
             const m = hdr && hdr.match(/^(?:items )?(\d+)-(\d+)\/(\d+|\*)$/);
@@ -74,17 +57,17 @@ export class ParamFilter {
             } else {
                 this.range = { total: 0, pages: 0 };
             }
-            this.range['pages'] = Math.ceil((this.range ? this.range.total : response.json().length) / this.resultsPerPage);
+            this.range['pages'] = Math.ceil((this.range ? this.range.total : response['length']) / this.resultsPerPage);
         }
     }
 
-    public add(filter: FilterComponent | Filter): void {
+    public add(filter: /*FilterComponent |*/ Filter): void {
         let f: Filter;
         if (filter instanceof Filter) {
             f = filter;
-        } else if (filter instanceof FilterComponent) {
+        } /*else if (filter instanceof FilterComponent) {
             f = filter.filter;
-        }
+        }*/
 
         if (this.filters.indexOf(f) < 0) {
             this.filters.push(f);
@@ -103,8 +86,8 @@ export class ParamFilter {
         this.orderings = orderings;
     }
 
-    public build(): URLSearchParams {
-        const searchParams: URLSearchParams = new URLSearchParams();
+    public build(): HttpParams {
+        const searchParams: HttpParams = new HttpParams();
         const filterObjects: Array<object> = [];
         if (this.filters) {
             if (this.filters.length === 1) {

@@ -1,9 +1,8 @@
-import { AfterViewInit, Component, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Filter } from '../../helper/filter/filter';
-import { TextFilter } from '../../helper/filter/types/text.filter';
-import { EqualFilter } from '../../helper/filter/types/equal.filter';
-import { SelectComponent } from '../../helper/abstracts/abstract-select.component';
+import { Filter } from '../../filter/filter';
+import { TextFilter } from '../../filter/types/text.filter';
+import { EqualFilter } from '../../filter/types/equal.filter';
 
 @Component({
     selector: 'filter-component',
@@ -41,30 +40,30 @@ import { SelectComponent } from '../../helper/abstracts/abstract-select.componen
                    class="form-control form-control--small form-control--transparent" />
         </div>
 
-        <select-component *ngIf="type === 'select'"
-                          [selectPlaceholder]="filterPlaceholder"
-                          (onSelect)="onChange($event)"
-                          (onRemove)="onRemove($event)"
-                          [selectClass]="selectClass"
-                          [resetable]="true"
-                          [options]="options"
-                          optionValue="value"
-                          optionLabel="label">
-            <!--<option *ngIf="resetable"></option>-->
-            <!--<option *ngIf="resetable" value="">-</option>-->
-            <!--<option *ngFor="let option of options" [value]="option.value">{{ option.label | translate }}</option>-->
-        </select-component>
+        <!--<select-component *ngIf="type === 'select'"-->
+                          <!--[selectPlaceholder]="filterPlaceholder"-->
+                          <!--(onSelect)="onChange($event)"-->
+                          <!--(onRemove)="onRemove($event)"-->
+                          <!--[selectClass]="selectClass"-->
+                          <!--[resetable]="true"-->
+                          <!--[options]="options"-->
+                          <!--optionValue="value"-->
+                          <!--optionLabel="label">-->
+            <!--&lt;!&ndash;<option *ngIf="resetable"></option>&ndash;&gt;-->
+            <!--&lt;!&ndash;<option *ngIf="resetable" value="">-</option>&ndash;&gt;-->
+            <!--&lt;!&ndash;<option *ngFor="let option of options" [value]="option.value">{{ option.label | translate }}</option>&ndash;&gt;-->
+        <!--</select-component>-->
 
-        <select-component *ngIf="type === 'select-remote'"
-                          [selectPlaceholder]="filterPlaceholder"
-                          (onSelect)="onChange($event)"
-                          (onRemove)="onRemove($event)"
-                          [selectClass]="selectClass"
-                          [resetable]="true"
-                          [filterUrl]="remoteUrl"
-                          [filterProperties]="remoteProperty"
-        >
-        </select-component>
+        <!--<select-component *ngIf="type === 'select-remote'"-->
+                          <!--[selectPlaceholder]="filterPlaceholder"-->
+                          <!--(onSelect)="onChange($event)"-->
+                          <!--(onRemove)="onRemove($event)"-->
+                          <!--[selectClass]="selectClass"-->
+                          <!--[resetable]="true"-->
+                          <!--[filterUrl]="remoteUrl"-->
+                          <!--[filterProperties]="remoteProperty"-->
+        <!--&gt;-->
+        <!--</select-component>-->
 
     `
 })
@@ -86,7 +85,7 @@ export class FilterComponent implements AfterViewInit, OnInit {
     @Input('remoteProperty') remoteProperty: Array<string>;
     @Output('onRefreshFilter') onRefreshFilter: EventEmitter<Filter> = new EventEmitter();
 
-    @ViewChild(forwardRef(() => SelectComponent)) selectComponent: SelectComponent;
+    // @ViewChild(forwardRef(() => SelectComponent)) selectComponent: SelectComponent;
 
     constructor(private translate: TranslateService) { }
 
@@ -141,9 +140,9 @@ export class FilterComponent implements AfterViewInit, OnInit {
         this.model = null;
         this.model2 = null;
         this.filter.active = false;
-        if (this.selectComponent) {
-            this.selectComponent.clearSelection();
-        }
+        // if (this.selectComponent) {
+        //     this.selectComponent.clearSelection();
+        // }
         this.isReseting = false;
     }
 

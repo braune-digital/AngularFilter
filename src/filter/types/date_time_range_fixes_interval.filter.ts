@@ -1,6 +1,3 @@
-import { Filter } from '../filter';
-import * as moment from 'moment';
-import {Moment} from 'moment';
 import {DateTimeRangeFilter} from './date_time_range.filter';
 
 export class DateTimeRangeFixedIntervalFilter extends DateTimeRangeFilter {
