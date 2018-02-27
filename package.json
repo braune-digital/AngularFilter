@@ -1,6 +1,6 @@
 {
   "name": "@braune-digital/filter",
-  "version": "4.2.0",
+  "version": "5.2.0",
   "main": "bundles/bd-filter.umd.js",
   "description": "",
   "scripts": {
