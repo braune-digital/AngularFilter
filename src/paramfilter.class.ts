@@ -5,7 +5,7 @@ import { Ordering } from './filter/order';
 import { AndFilter } from './filter/types/and.filter';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-export class ParamFilter {
+export class ParamFilter<E> {
 
     static resultKeys: number[] = [10, 25, 50];
 
@@ -17,8 +17,8 @@ export class ParamFilter {
 
     range: { total: number, pages: number, from?: number, to?: number } = { total: 0, pages: 0 };
 
-    responseEvent: Subject<any> = new Subject();
-    isLoadingEvent: Subject<boolean> = new Subject();
+    responseEvent = new Subject<Array<E>>();
+    isLoadingEvent = new Subject<boolean>();
 
     filtersFromLastRequest: string;
 
@@ -30,14 +30,14 @@ export class ParamFilter {
     public refresh(): void {
         this.isLoadingEvent.next(true);
         this.refreshPromise()
-            .subscribe((response: any) => {
+            .subscribe((response: Array<E>) => {
                 this.responseEvent.next(response);
                 this.isLoadingEvent.next(false);
             });
     }
 
     public refreshPromise(): Observable<any> {
-        return this.http.get(this.requestUrl, {params: this.build()})
+        return this.http.get<Array<E>>(this.requestUrl, {params: this.build()})
             // .catch((err: Response) => this.api.handleError(err));
     }
 
