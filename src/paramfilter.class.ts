@@ -4,8 +4,9 @@ import { Filter } from './filter/filter';
 import { Ordering } from './filter/order';
 import { AndFilter } from './filter/types/and.filter';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-export class ParamFilter<E> {
+export class ParamFilter<E = Object> {
 
     static resultKeys: number[] = [10, 25, 50];
 
@@ -17,8 +18,8 @@ export class ParamFilter<E> {
 
     range: { total: number, pages: number, from?: number, to?: number } = { total: 0, pages: 0 };
 
-    responseEvent = new Subject<Array<E>>();
-    isLoadingEvent = new Subject<boolean>();
+    responseEvent = new BehaviorSubject<Array<E>>(null);
+    isLoadingEvent = new BehaviorSubject<boolean>(false);
 
     filtersFromLastRequest: string;
 
